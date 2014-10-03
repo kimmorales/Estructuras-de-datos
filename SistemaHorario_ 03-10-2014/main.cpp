@@ -991,6 +991,14 @@ void menuHorarios()
         cout<<"Ingrese el nombre de la carrera";
         cin >>p_carrera;
         buscaCarrera(p_carrera);
+        if(buscaCarrera(p_carrera)==NULL){
+            InsertarCarrera(p_carrera);
+        }
+        struct semestre tempSE;
+        int p_numS;
+        cout<<"Ingrese el numero de semestre";
+        cin >>p_numS;
+        buscaSemestre(p_numS, &tempSE);
 
         string nomProfe;
         int carneProf;
@@ -1009,15 +1017,22 @@ void menuHorarios()
         buscaCurso(siglaCur,numCur);
 
         int p_grupo;
+        struct Grupo tempGRU;
         cout<<"Ingrese el numero de grupo";
         cin>>p_grupo;
-        buscaGrupo(p_grupo);
+        buscaGrupo(p_grupo, &tempGRU);
 
-
+        string p_codigo;
+        int p_numAu;
+        cout<<"Ingrese el codigo de indentificacion del aula";
+        cin>>p_codigo;
+        cout<<"Ingrese el numero de aula";
+        cin>>p_numAu;
+        BuscarAula(p_codigo,p_numAu);
 
     }
     else{
-        "\n\nIncorrecto!\n\n";
+       cout<< "\n\nIncorrecto!\n\n";
         menuHorarios();
     }
 }
