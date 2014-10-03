@@ -21,8 +21,10 @@ struct Curso
 
 }*listaCurso;
 
-// Funcion para insertar los cursos de forma ordenada segun su sigla
+/* Funcion para insertar los cursos de forma ordenada segun su sigla que recibe por parámetro la sigla del curso
+a ingresar: IC, PI, AE, recibe el numero de identificacion del curso, el nombre del curso y el numero de creditos
 
+*/
 void InsertarCurso(string sigla, int num, string nombre,int creditos)
 {
     Curso *nuevoC= new Curso();
