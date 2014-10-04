@@ -40,22 +40,22 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
     else{
         struct Curso *temp = listaCurso;
         struct Curso *ant = NULL;
-        while((temp != NULL)&&(sigla > temp->sigla)){
+        while((temp != NULL)&&(sigla > temp->sigla)){ //ciclo para realizar la insercion ordenada de cursos
             ant = temp;
             temp = temp->sig;
         }
-        if(temp == NULL) /// Inserta al final de la lista.
+        if(temp == NULL) // Inserta al final de la lista.
         {
             ant->sig = nuevoC;
             nuevoC->ant = ant;
         }
-        else if(ant==NULL) /// Inserta al inicio de la lista.
+        else if(ant==NULL) // Inserta al inicio de la lista.
         {
             nuevoC->sig = listaCurso;
             listaCurso->ant = nuevoC;
             listaCurso = nuevoC;
         }
-        else{ /// Insertar en medio de la lista.
+        else{ // Insertar en medio de la lista.
             ant->sig = nuevoC;
             temp->ant = nuevoC;
             nuevoC->sig = temp;
@@ -64,7 +64,9 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
 
     }
     };
-
+/*
+Funcion que permite realizar la modificacion de la informacion correspondiente a la sigla de un curso
+*/
     void modificarCurso(string vs,string ns, int num)
     {
         Curso *temp= listaCurso;
@@ -72,18 +74,18 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
         Curso *sig= listaCurso->sig;
         while(temp != NULL)
         {
-            if((temp->sigla == vs)&&(temp->num == num))
+            if((temp->sigla == vs)&&(temp->num == num))//si los datos ingresados coinciden
             {
-                if(sig==NULL)
+                if(sig==NULL)   // si el nodo es igual a nulo
                 {
-                    temp->sigla=ns;
+                    temp->sigla=ns;  // se registra la nueva sigla ingresada por el usuario
                     ant->sig=NULL;
                     temp->sig=NULL;
                     temp->ant=NULL;
                     break;
                 }
                 else
-                {
+                {               // si no , la sigla se modifica y se actualizan los punteros
                 temp->sigla=ns;
                 ant->sig=sig;
                 sig->ant=ant;
@@ -107,7 +109,7 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
                 sig=sig->sig;
                 }
             }
-        }
+        }//si no se encuentra ningun dato se invoca al método insertar y se envian los parametros recibidos
         string s= temp->sigla;
         int nu=temp->num;
         string no=temp->nombre;
@@ -115,7 +117,10 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
        InsertarCurso(s,nu,no,c);
         cout<<"modificacion exitosa";
     };
-
+/*
+Funcion que permite modificar el numero de identificacion de un curso recibe por parametro, la sigla del curso
+el numero registrado y nuevo el numero.
+*/
     void modificarCurso(string s, int vnum , int nnum)
     {
         Curso *temp= listaCurso;
@@ -124,12 +129,12 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
         temp->ant= NULL;
         while(temp != NULL)
         {
-            if((temp->sigla == s)&&(temp->num == vnum))
+            if((temp->sigla == s)&&(temp->num == vnum)) // si el numero registrado coincide con el numero ingresado
             {
-                temp->num=nnum;
+                temp->num=nnum;  // se realiza la modificacion
                 break;
             }
-            else
+            else  //si no encuentra, se continua con el recorrido de la lista
             {
                 ant=temp;
                 temp=temp->sig;
@@ -138,6 +143,10 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
         }
     };
 
+/*
+Funcion que permite modificar el nombre de un curso recibe por parametro, la sigla del curso
+el numero y nuevo el nombre.
+*/
     void modificarCurso(string s,int num,string nom)
     {
         Curso *temp= listaCurso;
@@ -146,12 +155,12 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
         temp->ant= NULL;
         while(temp != NULL)
         {
-            if((temp->sigla == s)&&(temp->num == num))
+            if((temp->sigla == s)&&(temp->num == num)) //si los datos coinciden
             {
-                temp->nombre=nom;
+                temp->nombre=nom;      //se modifica de inmediato el nombre del curso
                 break;
             }
-            else
+            else                        // si no se continua con la busqueda hasta que coincidan los datos
             {
                 ant=temp;
                 temp=temp->sig;
@@ -159,7 +168,10 @@ void InsertarCurso(string sigla, int num, string nombre,int creditos)
             }
         }
     };
-
+/*
+Funcion que permite modificar la cantidad de creditos de un curso recibe por parametro, la sigla del curso
+el numero y nuevo el nombre.
+*/
     void modificarCurso(int num,string s,int c)
     {
         Curso *temp= listaCurso;
